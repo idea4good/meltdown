@@ -8,3 +8,4 @@ Note: Support Linux x64 only
 2. `./run.sh`
 
 If everything is ok, You will get linux_proc_banner: "%s version %s"
+![output](output.png)
