@@ -7,4 +7,4 @@ Note: Support Linux x64 only
 1. `gcc meldown.c`
 2. `./run.sh`
 
-You will get linux_proc_banner: "%s version %s"
+If everything is ok, You will get linux_proc_banner: "%s version %s"
