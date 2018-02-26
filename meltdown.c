@@ -35,7 +35,7 @@ static void clflush_probe_array(void)
 		_mm_clflush(&probe_pages[i * PAGE_SIZE]);
 }
 
-static void i_will_access_kernel_address()//read linux_proc_banner
+static void i_will_access_kernel_address()//read linux_proc_banner by system call
 {
     static char buf[256];
     int fd = open("/proc/version", O_RDONLY);
