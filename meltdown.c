@@ -82,8 +82,9 @@ static void update_cache_hit_times(void)
 	int i, delay, page_index;
 	volatile char *addr;
 
+	//find the pages which in cache. Order is lightly mixed up to prevent stride prediction
 	for (i = 0; i < PAGE_NUM; i++) {
-		page_index = ((i * 167) + 13) & 255; //page_index = i: maybe move probe_pages all in cache
+		page_index = ((i * 167) + 13) & 255;
         
 		addr = &probe_pages[page_index * PAGE_SIZE];
 		delay = get_access_delay(addr);
@@ -122,7 +123,7 @@ static int read_byte_from_cache(unsigned long addr)
 		update_cache_hit_times();
 	}
 
-    //find the page which has highest access speed.
+    	//find the page which has highest access frequency.
 	for (i = 1; i < PAGE_NUM; i++) {
 		if (!isprint(i))
 			continue;
